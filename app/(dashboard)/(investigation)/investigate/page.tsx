@@ -410,7 +410,7 @@ export default function InvestigatePage() {
               <span className="text-xs font-medium text-muted-foreground uppercase tracking-wide">
                 {formattedKey}
               </span>
-              <span className="text-sm font-semibold break-words">
+              <span className="text-sm font-semibold wrap-break-word">
                 {String(value)}
               </span>
             </div>
@@ -485,7 +485,7 @@ export default function InvestigatePage() {
       {/* Main Content Area */}
       <div className="relative min-h-[400px]">
         {!result ? (
-          <Card className="border-none shadow-xl bg-gradient-to-b from-card to-card/50">
+          <Card className="border-none shadow-xl bg-linear-to-b from-card to-card/50">
             <CardHeader className="space-y-1 pb-6">
               <CardTitle className="text-xl">Investigation Details</CardTitle>
               <CardDescription className="text-base">
@@ -546,7 +546,7 @@ export default function InvestigatePage() {
 
                 {error && (
                   <div className="flex items-center gap-3 text-destructive text-sm bg-destructive/5 p-4 rounded-xl border border-destructive/10 animate-in slide-in-from-top-2">
-                    <AlertCircle className="h-5 w-5 flex-shrink-0" />
+                    <AlertCircle className="h-5 w-5 shrink-0" />
                     <span className="font-medium">{error}</span>
                   </div>
                 )}
@@ -564,7 +564,7 @@ export default function InvestigatePage() {
                   <Button
                     type="submit"
                     disabled={isLoading}
-                    className="flex-[2] h-12 text-base shadow-lg shadow-primary/20 hover:shadow-primary/30 transition-shadow"
+                    className="flex-2 h-12 text-base shadow-lg shadow-primary/20 hover:shadow-primary/30 transition-shadow"
                   >
                     {isLoading ? (
                       <>

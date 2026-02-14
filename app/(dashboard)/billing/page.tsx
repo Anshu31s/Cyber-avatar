@@ -1,3 +1,5 @@
+"use client"
+
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import { Check, Coins } from "lucide-react"
@@ -6,45 +8,102 @@ const plans = [
   {
     name: "Starter",
     price: "399",
-    credits: "180",
+    credits: "410",
     description: "Perfect for minor investigations and data lookups.",
     features: [
       "Access to LEOR Directory",
       "Standard Search Speed",
       "Email Support",
-      "180 Credits Included"
+      "410 Credits Included"
     ]
   },
   {
     name: "Pro",
     price: "699",
-    credits: "200",
+    credits: "750",
     popular: true,
     description: "Enhanced capacity for frequent data requisitions.",
     features: [
       "Priority API Access",
       "Faster Search results",
       "24/7 Priority Support",
-      "200 Credits Included",
+      "750 Credits Included",
       "Bulk Lookup Tools"
     ]
   },
   {
     name: "Elite",
     price: "999",
-    credits: "600",
+    credits: "1200",
     description: "Maximum power for deep-dive intelligence operations.",
     features: [
       "Unlimited Dashboard Usage",
       "Fastest Infrastructure",
       "Dedicated Account Manager",
-      "600 Credits Included",
+      "1200 Credits Included",
       "Custom Report Generation"
     ]
   }
 ]
 
 export default function Page() {
+  async function handlePayment(plan: any) {
+    try {
+      const res = await fetch("/api/razorpay/create-order", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          amount: Number(plan.price),
+          credits: Number(plan.credits),
+        }),
+      })
+
+      const data = await res.json()
+
+      if (!data.success) {
+        alert(data.error || "Failed to create order")
+        return
+      }
+
+      const options = {
+        key: data.keyId,
+        amount: data.amount,
+        currency: data.currency,
+        name: "Cyber Avatar",
+        description: `${plan.name} Credits Pack`,
+        order_id: data.orderId,
+
+        handler: async (response: any) => {
+          const verify = await fetch("/api/razorpay/verify", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(response),
+          })
+
+          const verifyData = await verify.json()
+
+          if (verifyData.success) {
+            alert("Payment Successful 🚀 Credits Added!")
+            window.location.reload()
+          } else {
+            alert("Payment verification failed ❌")
+          }
+        },
+
+        theme: {
+          color: "#8b5cf6",
+          backdrop_color: "rgba(0, 0, 0, 0.85)"
+        },
+      }
+
+      const razor = new (window as any).Razorpay(options)
+      razor.open()
+    } catch (err) {
+      console.error("Payment error:", err)
+      alert("Something went wrong")
+    }
+  }
+
   return (
     <div className="flex flex-1 flex-col gap-8 p-8">
       <div className="flex flex-col gap-2">
@@ -58,11 +117,11 @@ export default function Page() {
         {plans.map((plan) => (
           <Card
             key={plan.name}
-            className={`relative flex flex-col transition-all hover:shadow-2xl hover:-translate-y-1 ${plan.popular ? 'border-orange-500 shadow-lg shadow-orange-500/10' : 'border-border'
+            className={`relative flex flex-col transition-all hover:shadow-2xl hover:-translate-y-1 ${plan.popular ? 'border-purple-500 shadow-lg shadow-purple-500/10' : 'border-border'
               }`}
           >
             {plan.popular && (
-              <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-orange-500 text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest z-10 shadow-md">
+              <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-purple-500 text-white text-[10px] font-bold px-3 py-1 rounded-full uppercase tracking-widest z-10 shadow-md">
                 Most Popular
               </div>
             )}
@@ -80,14 +139,14 @@ export default function Page() {
                 <span className="text-sm font-medium text-muted-foreground">/one-time</span>
               </div>
 
-              <div className="p-4 rounded-xl bg-orange-500/5 border border-orange-500/10 flex items-center justify-between">
+              <div className="p-4 rounded-xl bg-purple-500/5 border border-purple-500/10 flex items-center justify-between">
                 <div className="flex items-center gap-3">
-                  <div className="p-2 rounded-lg bg-orange-500 text-white shadow-lg shadow-orange-500/20">
+                  <div className="p-2 rounded-lg bg-purple-500 text-white shadow-lg shadow-purple-500/20">
                     <Coins className="h-5 w-5" />
                   </div>
                   <div className="flex flex-col">
                     <span className="text-lg font-bold leading-none">{plan.credits}</span>
-                    <span className="text-[10px] uppercase font-bold text-orange-600/60 tracking-tighter">Credits</span>
+                    <span className="text-[10px] uppercase font-bold text-purple-600/60 tracking-tighter">Credits</span>
                   </div>
                 </div>
                 <div className="text-[10px] font-bold text-muted-foreground uppercase tracking-widest bg-muted px-2 py-1 rounded">
@@ -109,13 +168,15 @@ export default function Page() {
 
             <CardFooter>
               <Button
+                onClick={() => handlePayment(plan)}
                 className={`w-full h-11 text-sm font-bold transition-all shadow-xl ${plan.popular
-                    ? 'bg-orange-500 hover:bg-orange-600 shadow-orange-500/20'
-                    : 'bg-foreground text-background hover:bg-foreground/90'
+                  ? "bg-purple-500 hover:bg-purple-600 shadow-purple-500/20"
+                  : "bg-foreground text-background hover:bg-foreground/90"
                   }`}
               >
                 Buy {plan.credits} Credits
               </Button>
+
             </CardFooter>
           </Card>
         ))}

@@ -157,10 +157,7 @@ export function Navbar() {
                             <CreditCard className="mr-2 h-4 w-4" />
                             Billing
                         </DropdownMenuItem>
-                        {/* <DropdownMenuItem className="cursor-pointer">
-                            <Settings className="mr-2 h-4 w-4" />
-                            Settings
-                        </DropdownMenuItem> */}
+                        
                         <DropdownMenuSeparator />
                         <DropdownMenuItem
                             className="text-red-500 focus:text-red-500 cursor-pointer"

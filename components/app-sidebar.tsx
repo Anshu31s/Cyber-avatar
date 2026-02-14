@@ -23,7 +23,7 @@ import {
   Phone,
   ScanLine,
 } from "lucide-react"
-
+import Links from "next/link";
 import {
   Collapsible,
   CollapsibleContent,
@@ -35,6 +35,7 @@ import {
   SidebarGroup,
   SidebarGroupContent,
   SidebarGroupLabel,
+  SidebarHeader,
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
@@ -43,6 +44,7 @@ import {
   SidebarMenuSubItem,
   SidebarFooter,
 } from "@/components/ui/sidebar"
+import Image from "next/image"
 import { Skeleton } from "@/components/ui/skeleton"
 import { getUserCredits } from "@/lib/actions"
 
@@ -52,11 +54,6 @@ const mainNav = [
     title: "Home",
     url: "/",
     icon: Home,
-  },
-  {
-    title: "Start Investigation",
-    url: "/investigation",
-    icon: FileSearch,
   },
   {
     title: "Data Requisition",
@@ -78,63 +75,91 @@ const intelligenceTools = [
   },
   {
     title: "OSINT Toolkit",
-    url: "/tools/osint",
+    url: "/osint",
     icon: Globe,
   },
   {
     title: "Virtual Numbers",
-    url: "/tools/virtual-numbers",
+    url: "/virtual-numbers",
     icon: Phone,
   },
   {
     title: "LEOR DIRECTORY",
-    url: "/tools/le-directory",
+    url: "/le-directory",
     icon: BookUser,
   },
   {
     title: "Domain Checker",
-    url: "/tools/domain-checker",
+    url: "/domain-checker",
     icon: GlobeLock,
   },
   {
     title: "Location-Tracker",
-    url: "/tools/location-tracker",
+    url: "/location-tracker",
     icon: MapPin,
   },
   {
     title: "Bulk IP",
-    url: "/tools/bulk-ip",
+    url: "/bulk-ip",
     icon: Network,
   },
   {
     title: "URL Spoofing",
-    url: "/tools/url-spoofing",
+    url: "/url-spoofing",
     icon: Link,
   },
   {
     title: "URL Scanner",
-    url: "/tools/url-scanner",
+    url: "/url-scanner",
     icon: ScanLine,
   },
   {
     title: "Email Headers",
-    url: "/tools/email-headers",
+    url: "/email-headers",
     icon: Mail,
   },
   {
     title: "Hash Analyzer",
-    url: "/tools/hash-analyzer",
+    url: "/hash-analyzer",
     icon: Hash,
   },
   {
     title: "Dork Generator",
-    url: "/tools/dork-generator",
+    url: "/dork-generator",
     icon: Code,
   },
   {
     title: "Malware Scan",
-    url: "/tools/malware-scan",
+    url: "/malware-scan",
     icon: Bug,
+  },
+]
+
+const investigationModules = [
+  {
+    title: "Phone Module",
+    url: "/phone-module",
+    icon: Phone,
+  },
+  {
+    title: "Email Module",
+    url: "/email-module",
+    icon: Mail,
+  },
+  {
+    title: "Vehicle   Module",
+    url: "/vehicle-module",
+    icon: FileSearch,
+  },
+  {
+    title: "Corporate Module",
+    url: "/corporate-module",
+    icon: Database,
+  },
+  {
+    title: "Intel Module",
+    url: "/intel-module",
+    icon: Network,
   },
 ]
 
@@ -153,6 +178,20 @@ export function AppSidebar() {
 
   return (
     <Sidebar>
+      <SidebarHeader className="p-4 border-b">
+        <Links href="/" className="flex items-center gap-3 text-lg font-semibold capitalize">
+          <Image
+            src="/logo.png"
+            alt="Cyber Avatar Logo"
+            width={50}
+            height={50}
+            className="object-contain"
+            unoptimized
+            priority
+          />
+          <span style={{ fontFamily: 'var(--font-blanka)' }} className="uppercase tracking-widest">cyber-avatar</span>
+        </Links>
+      </SidebarHeader>
       <SidebarContent>
         <SidebarGroup>
           <SidebarGroupLabel>Main Menu</SidebarGroupLabel>
@@ -171,7 +210,38 @@ export function AppSidebar() {
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
-
+        <SidebarGroup>
+          <SidebarGroupLabel>Investigation</SidebarGroupLabel>
+          <SidebarGroupContent>
+            <SidebarMenu>
+              <Collapsible asChild defaultOpen className="group/investigation">
+                <SidebarMenuItem>
+                  <CollapsibleTrigger asChild>
+                    <SidebarMenuButton tooltip="Investigation Modules">
+                      <FileSearch />
+                      <span>Investigation Modules</span>
+                      <ChevronRight className="ml-auto transition-transform duration-200 group-data-[state=open]/investigation:rotate-90" />
+                    </SidebarMenuButton>
+                  </CollapsibleTrigger>
+                  <CollapsibleContent>
+                    <SidebarMenuSub>
+                      {investigationModules.map((item) => (
+                        <SidebarMenuSubItem key={item.title}>
+                          <SidebarMenuSubButton asChild>
+                            <a href={item.url}>
+                              <item.icon className="scale-90" />
+                              <span>{item.title}</span>
+                            </a>
+                          </SidebarMenuSubButton>
+                        </SidebarMenuSubItem>
+                      ))}
+                    </SidebarMenuSub>
+                  </CollapsibleContent>
+                </SidebarMenuItem>
+              </Collapsible>
+            </SidebarMenu>
+          </SidebarGroupContent>
+        </SidebarGroup>
         <SidebarGroup>
           <SidebarGroupLabel>Tools</SidebarGroupLabel>
           <SidebarGroupContent>
@@ -204,16 +274,18 @@ export function AppSidebar() {
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
+
+
       </SidebarContent>
       <SidebarFooter className="p-4">
-        <div className="rounded-xl bg-linear-to-br from-orange-500/10 via-orange-500/5 to-transparent border border-orange-500/20 p-4 relative overflow-hidden group hover:border-orange-500/40 transition-colors">
+        <div className="rounded-xl bg-linear-to-br from-[#3c145a]/10 via-[#3c145a]/5 to-transparent border border-[#3c145a]/20 p-4 relative overflow-hidden group hover:border-[#3c145a]/40 transition-colors">
           <div className="absolute top-0 right-0 p-2 opacity-20 group-hover:opacity-40 transition-opacity">
-            <Coins className="h-12 w-12 text-orange-500 -mr-4 -mt-4 rotate-12" />
+            <Coins className="h-12 w-12 text-[#3c145a] -mr-4 -mt-4 rotate-12" />
           </div>
           <div className="relative z-10 flex flex-col gap-1">
             <div className="flex items-center gap-2">
-              <div className="p-1.5 rounded-md bg-orange-500/20">
-                <Coins className="h-4 w-4 text-orange-500" />
+              <div className="p-1.5 rounded-md bg-[#3c145a]/20">
+                <Coins className="h-4 w-4 text-[#3c145a]" />
               </div>
               <span className="text-sm font-semibold tracking-tight">Credits</span>
             </div>
@@ -227,8 +299,8 @@ export function AppSidebar() {
             </div>
           </div>
           <a
-            href="/billing"
-            className="mt-3 flex items-center justify-center w-full py-2 rounded-lg bg-orange-500 text-white text-xs font-bold hover:bg-orange-600 transition-colors shadow-lg shadow-orange-500/20"
+            href="/recharge"
+            className="mt-3 flex items-center justify-center w-full py-2 rounded-lg bg-[#3c145a] text-white text-xs font-bold hover:bg-[#3c145a] transition-colors shadow-lg shadow-[#3c145a]/20"
           >
             Add Credits
           </a>

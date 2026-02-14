@@ -2,6 +2,7 @@
 
 import { useState, Suspense } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import * as z from "zod";
@@ -99,6 +100,21 @@ function SignInContent() {
 
     return (
         <div className="flex h-screen w-full flex-col items-center justify-center px-4 gap-6">
+            {/* Logo with Name */}
+            <Link href="/" className="flex items-center gap-3 mb-2">
+                <Image
+                    src="/logo.png"
+                    alt="Cyber Avatar Logo"
+                    width={50}
+                    height={50}
+                    className="object-contain w-12 h-auto logo-flicker"
+                    unoptimized
+                />
+                <span style={{ fontFamily: 'var(--font-blanka)' }} className="text-2xl uppercase tracking-widest">
+                    cyber-avatar
+                </span>
+            </Link>
+
             {isInactive && (
                 <Alert className="max-w-sm border-orange-500/50 bg-orange-500/5 shadow-lg shadow-orange-500/10">
                     <ShieldAlert className="h-4 w-4 text-orange-600" />
@@ -127,8 +143,8 @@ function SignInContent() {
 
             <Card className="w-full max-w-sm">
                 <CardHeader>
-                    <CardTitle className="text-2xl">Login</CardTitle>
-                    <CardDescription>
+                    <CardTitle className="text-2xl text-center tracking-widest uppercase" style={{ fontFamily: 'var(--font-blanka)' }}>Login</CardTitle>
+                    <CardDescription className="text-center">
                         Enter your email below to login to your account.
                     </CardDescription>
                 </CardHeader>

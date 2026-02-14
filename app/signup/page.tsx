@@ -2,6 +2,7 @@
 
 import { useState } from "react"
 import Link from "next/link"
+import Image from "next/image"
 import { useForm } from "react-hook-form"
 import { zodResolver } from "@hookform/resolvers/zod"
 import * as z from "zod"
@@ -85,11 +86,27 @@ export default function SignUpPage() {
     }
 
     return (
-        <div className="flex min-h-screen w-full items-center justify-center p-4">
+        <div className="flex min-h-screen w-full flex-col items-center justify-center p-4 gap-6">
+            {/* Logo with Name */}
+            <Link href="/" className="flex items-center gap-3">
+                <Image
+                    src="/logo.png"
+                    alt="Cyber Avatar Logo"
+                    width={50}
+                    height={50}
+                    className="object-contain w-12 h-auto logo-flicker"
+                    unoptimized
+                />
+
+                <span style={{ fontFamily: 'var(--font-blanka)' }} className="text-2xl uppercase tracking-widest">
+                    cyber-avatar
+                </span>
+            </Link>
+
             <Card className="w-full max-w-md">
                 <CardHeader>
-                    <CardTitle className="text-2xl">Create an account</CardTitle>
-                    <CardDescription>
+                    <CardTitle className="text-2xl text-center tracking-widest uppercase" style={{ fontFamily: 'var(--font-blanka)' }}>Create an account</CardTitle>
+                    <CardDescription className="text-center">
                         Enter your details below to create your account.
                     </CardDescription>
                 </CardHeader>

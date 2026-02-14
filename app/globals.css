@@ -48,78 +48,158 @@
 
 :root {
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --chart-1: oklch(0.646 0.222 41.116);
-  --chart-2: oklch(0.6 0.118 184.704);
-  --chart-3: oklch(0.398 0.07 227.392);
-  --chart-4: oklch(0.828 0.189 84.429);
-  --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: oklch(0.985 0 0);
-  --sidebar-foreground: oklch(0.145 0 0);
-  --sidebar-primary: oklch(0.205 0 0);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.97 0 0);
-  --sidebar-accent-foreground: oklch(0.205 0 0);
-  --sidebar-border: oklch(0.922 0 0);
-  --sidebar-ring: oklch(0.708 0 0);
+
+  /* Light theme with pale cyan/teal tones */
+  --background: oklch(0.98 0.01 200);
+  --foreground: oklch(0.18 0.04 280);
+
+  --card: oklch(0.99 0.005 200);
+  --card-foreground: oklch(0.18 0.04 280);
+
+  --popover: oklch(0.99 0.005 200);
+  --popover-foreground: oklch(0.18 0.04 280);
+
+  /* Primary - Vibrant Teal */
+  --primary: oklch(0.55 0.12 195);
+  --primary-foreground: oklch(0.98 0.01 200);
+
+  /* Secondary - Slate Blue */
+  --secondary: oklch(0.92 0.03 260);
+  --secondary-foreground: oklch(0.25 0.06 280);
+
+  /* Muted - Light slate */
+  --muted: oklch(0.94 0.02 220);
+  --muted-foreground: oklch(0.45 0.04 260);
+
+  /* Accent - Deep Purple */
+  --accent: oklch(0.35 0.15 310);
+  --accent-foreground: oklch(0.98 0.01 200);
+
+  --destructive: oklch(0.55 0.22 25);
+
+  --border: oklch(0.88 0.02 220);
+  --input: oklch(0.92 0.02 220);
+  --ring: oklch(0.55 0.12 195);
+
+  /* Chart colors */
+  --chart-1: oklch(0.55 0.12 195);
+  /* Teal */
+  --chart-2: oklch(0.40 0.18 310);
+  /* Deep Purple */
+  --chart-3: oklch(0.50 0.08 260);
+  /* Slate Blue */
+  --chart-4: oklch(0.70 0.10 195);
+  /* Light Teal */
+  --chart-5: oklch(0.55 0.10 235);
+  /* Muted Blue */
+
+  /* Sidebar */
+  --sidebar: oklch(0.96 0.01 220);
+  --sidebar-foreground: oklch(0.18 0.04 280);
+  --sidebar-primary: oklch(0.55 0.12 195);
+  --sidebar-primary-foreground: oklch(0.98 0.01 200);
+  --sidebar-accent: oklch(0.92 0.03 260);
+  --sidebar-accent-foreground: oklch(0.25 0.06 280);
+  --sidebar-border: oklch(0.88 0.02 220);
+  --sidebar-ring: oklch(0.55 0.12 195);
 }
 
 .dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
-  --chart-1: oklch(0.488 0.243 264.376);
-  --chart-2: oklch(0.696 0.17 162.48);
-  --chart-3: oklch(0.769 0.188 70.08);
-  --chart-4: oklch(0.627 0.265 303.9);
-  --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: oklch(0.205 0 0);
-  --sidebar-foreground: oklch(0.985 0 0);
-  --sidebar-primary: oklch(0.488 0.243 264.376);
-  --sidebar-primary-foreground: oklch(0.985 0 0);
-  --sidebar-accent: oklch(0.269 0 0);
-  --sidebar-accent-foreground: oklch(0.985 0 0);
-  --sidebar-border: oklch(1 0 0 / 10%);
-  --sidebar-ring: oklch(0.556 0 0);
+  /* Deep navy/slate background */
+  --background: oklch(0.15 0.03 260);
+  --foreground: oklch(0.95 0.02 200);
+
+  /* Card with subtle purple tint */
+  --card: oklch(0.18 0.04 280);
+  --card-foreground: oklch(0.95 0.02 200);
+
+  /* Popover matches card */
+  --popover: oklch(0.18 0.04 280);
+  --popover-foreground: oklch(0.95 0.02 200);
+
+  /* Primary - Vibrant Teal/Cyan */
+  --primary: oklch(0.78 0.12 195);
+  --primary-foreground: oklch(0.15 0.03 260);
+
+  /* Secondary - Slate Blue */
+  --secondary: oklch(0.55 0.08 260);
+  --secondary-foreground: oklch(0.95 0.02 200);
+
+  /* Muted - Dark slate */
+  --muted: oklch(0.28 0.04 260);
+  --muted-foreground: oklch(0.65 0.06 220);
+
+  /* Accent - Deep Purple */
+  --accent: oklch(0.35 0.15 310);
+  --accent-foreground: oklch(0.95 0.02 200);
+
+  --destructive: oklch(0.65 0.2 25);
+
+  /* Borders with teal tint */
+  --border: oklch(0.35 0.05 220);
+  --input: oklch(0.25 0.04 260);
+  --ring: oklch(0.7 0.12 195);
+
+  /* Chart colors matching palette */
+  --chart-1: oklch(0.78 0.12 195);
+  /* Teal */
+  --chart-2: oklch(0.45 0.18 310);
+  /* Deep Purple */
+  --chart-3: oklch(0.55 0.08 260);
+  /* Slate Blue */
+  --chart-4: oklch(0.88 0.08 195);
+  /* Light Cyan */
+  --chart-5: oklch(0.60 0.10 235);
+  /* Muted Blue */
+
+  /* Sidebar - Darker with purple undertone */
+  --sidebar: oklch(0.12 0.05 290);
+  --sidebar-foreground: oklch(0.95 0.02 200);
+  --sidebar-primary: oklch(0.78 0.12 195);
+  --sidebar-primary-foreground: oklch(0.12 0.05 290);
+  --sidebar-accent: oklch(0.35 0.15 310);
+  --sidebar-accent-foreground: oklch(0.95 0.02 200);
+  --sidebar-border: oklch(0.30 0.06 280);
+  --sidebar-ring: oklch(0.7 0.12 195);
 }
 
 @layer base {
   * {
     @apply border-border outline-ring/50;
   }
+
   body {
     @apply bg-background text-foreground;
   }
+}
+
+/* Flickering Glow Effect for Logo */
+@keyframes logoFlicker {
+
+  0%,
+  100% {
+    filter: drop-shadow(0 0 20px rgba(0, 212, 255, 0.8)) drop-shadow(0 0 40px rgba(0, 212, 255, 0.5)) drop-shadow(0 0 60px rgba(0, 212, 255, 0.3));
+    opacity: 1;
+  }
+
+  10%,
+  30%,
+  50%,
+  70%,
+  90% {
+    filter: drop-shadow(0 0 10px rgba(0, 212, 255, 0.4)) drop-shadow(0 0 20px rgba(0, 212, 255, 0.2));
+    opacity: 0.9;
+  }
+
+  20%,
+  40%,
+  60%,
+  80% {
+    filter: drop-shadow(0 0 30px rgba(0, 212, 255, 1)) drop-shadow(0 0 50px rgba(0, 212, 255, 0.7)) drop-shadow(0 0 80px rgba(0, 212, 255, 0.4));
+    opacity: 1;
+  }
+}
+
+.logo-flicker {
+  animation: logoFlicker 3s ease-in-out infinite;
 }

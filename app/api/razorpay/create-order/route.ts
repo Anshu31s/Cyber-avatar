@@ -6,13 +6,11 @@ import Razorpay from "razorpay"
 export async function POST(request: NextRequest) {
   try {
     const session = await auth()
-    console.log("Create Order Session:", JSON.stringify(session, null, 2))
+
     if (!session?.user?.id) {
-      console.log("Unauthorized - Session is null or user ID missing")
       return NextResponse.json({
         success: false,
-        error: "Unauthorized",
-        debug: { session }
+        error: "Unauthorized"
       }, { status: 401 })
     }
 

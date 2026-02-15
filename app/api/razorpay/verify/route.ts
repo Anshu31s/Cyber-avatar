@@ -31,22 +31,22 @@ export async function POST(req: NextRequest) {
       return NextResponse.json({ success: false, error: "Already processed" })
     }
 
-    // Mark payment success
-    await prisma.paymentTransaction.update({
-      where: { razorpayOrderId: razorpay_order_id },
-      data: {
-        paymentId: razorpay_payment_id,
-        status: "success"
-      }
-    })
-
-    // Add credits to user
-    await prisma.user.update({
-      where: { id: session.user.id },
-      data: {
-        credits: { increment: transaction.credits }
-      }
-    })
+    // Atomically mark payment success + add credits
+    await prisma.$transaction([
+      prisma.paymentTransaction.update({
+        where: { razorpayOrderId: razorpay_order_id },
+        data: {
+          paymentId: razorpay_payment_id,
+          status: "success"
+        }
+      }),
+      prisma.user.update({
+        where: { id: session.user.id },
+        data: {
+          credits: { increment: transaction.credits }
+        }
+      })
+    ])
 
     return NextResponse.json({ success: true })
 
